@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  spark-master:
+    image: bitnami/spark:latest
+    container_name: spark-master
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=spark-master
+    ports:
+      - "7077:7077"
+      - "8080:8080"
+    networks:
+      - spark-network
+
+  spark-worker:
+    image: bitnami/spark:latest
+    container_name: spark-worker
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    ports:
+      - "8081:8081"
+    depends_on:
+      - spark-master
+    networks:
+      - spark-network
+
+  jupyter:
+    image: jupyter/pyspark-notebook:latest
+    container_name: jupyter-notebook
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./data:/home/jovyan/data
+      - ./file:/home/jovyan/file
+    ports:
+      - "8888:8888"
+    environment:
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    depends_on:
+      - spark-master
+      - spark-worker
+    networks:
+      - spark-network
+    command: >
+      bash -c "pip install pyspark &&
+               start-notebook.sh --NotebookApp.token=''"
+
+networks:
+  spark-network:
+    driver: bridge
