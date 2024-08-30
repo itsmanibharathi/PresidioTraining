@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Items List</title>
+</head>
+
+<body>
+    <h1>Items List</h1>
+    <ul>
+        <% items.forEach(item=> { %>
+            <li>
+                <%= item.name %>
+            </li>
+            <% }); %>
+    </ul>
+</body>
+
+</html>
