@@ -1,0 +1,3 @@
+[submodule "AppDevTraining"]
+	path = AppDevTraining
+	url = https://github.com/itsmanibharathi/GenSpark
