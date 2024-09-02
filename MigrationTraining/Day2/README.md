@@ -126,6 +126,9 @@ migrate databases from a VM to a SQL Managed Instance.
   "DmaVersion": {}
 }
 ```
+![image](https://github.com/user-attachments/assets/fdb9d7d0-9c02-4a4c-9275-a730fa9c3cf6)
+
+
 ### Migration
 ![image](https://github.com/user-attachments/assets/df95be0f-6012-43e4-b6d9-28d6dff4b1e9)
 
