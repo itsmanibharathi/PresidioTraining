@@ -13,7 +13,7 @@ GITLAB_TOKEN="glpat-erNvrYyXEhphWgoDRxt1"
 # List of repositories to import
 
 REPOS=(
-    "html-demo"
+    "Docker-image-test-app"
 )
  
 # GitLab URL (without the trailing slash)
