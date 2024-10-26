@@ -33,8 +33,17 @@ resource "azurerm_storage_container" "mani-container" {
   storage_account_name  = azurerm_storage_account.mani-storage.name
   container_access_type = "private"
 }
-resource "azurerm_storage_container" "mani-container2" {
-  name                  = "manicontainer2"
-  storage_account_name  = azurerm_storage_account.mani-storage.name
-  container_access_type = "private"
+
+resource "azurerm_storage_blob" "mani-blob" {
+  name                   = "maniblob"
+  storage_account_name   = azurerm_storage_account.mani-storage.name
+  storage_container_name = azurerm_storage_container.mani-container.name
+  type                   = "Block"
+  source                 = "main.tf"
+}
+
+// rg 
+resource "azurerm_resource_group" "mani-rg2" {
+  name     = "mani-rg2"
+  location = "East US"
 }
