@@ -14,6 +14,7 @@ resource "azurerm_resource_group" "mani-rg" {
   location = "East US"
 }
 
+
 resource "azurerm_storage_account" "mani-storage" {
   name                     = "manistorageaccount"
   resource_group_name      = azurerm_resource_group.mani-rg.name
@@ -22,7 +23,7 @@ resource "azurerm_storage_account" "mani-storage" {
   account_replication_type = "LRS"
 
   tags = {
-    environment = "test"
+    environment = "test21"
   }
 }
 

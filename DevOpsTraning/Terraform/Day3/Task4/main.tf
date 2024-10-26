@@ -11,7 +11,7 @@ terraform {
 provider "aws" {
     region = "us-east-1"
     assume_role {
-        role_arn = "arn:aws:iam::853973692277:role/mani_tf-cli"
+        role_arn = "arn:aws:iam:::role/mani_tf-cli"
         session_name = "mani"
     }
 }
