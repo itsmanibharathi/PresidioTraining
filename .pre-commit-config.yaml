@@ -11,4 +11,3 @@ repos:
     rev: ""
     hooks:
       - id: checkov
-        args: ["--directory", "./DevOpsTraning/Terraform/"]
