@@ -33,3 +33,8 @@ resource "azurerm_storage_container" "mani-container" {
   storage_account_name  = azurerm_storage_account.mani-storage.name
   container_access_type = "private"
 }
+resource "azurerm_storage_container" "mani-container2" {
+  name                  = "manicontainer2"
+  storage_account_name  = azurerm_storage_account.mani-storage.name
+  container_access_type = "private"
+}

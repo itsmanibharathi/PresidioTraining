@@ -5,3 +5,7 @@ checkov -d ./DevOpsTraning/Terraform/ -o json > checkov_report.json
 
 # Run Python script to calculate compliance percentage
 python3 calculate_compliance.py
+
+# cleanup
+rm checkov_report.json
+
