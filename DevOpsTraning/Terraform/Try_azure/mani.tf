@@ -27,6 +27,7 @@ resource "azurerm_storage_account" "mani-storage" {
   }
 }
 
+
 resource "azurerm_storage_container" "mani-container" {
   name                  = "manicontainer"
   storage_account_name  = azurerm_storage_account.mani-storage.name
