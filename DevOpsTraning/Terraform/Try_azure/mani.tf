@@ -23,7 +23,7 @@ resource "azurerm_storage_account" "mani-storage" {
   account_replication_type = "LRS"
 
   tags = {
-    environment = "test21"
+    environment = "test"
   }
 }
 
