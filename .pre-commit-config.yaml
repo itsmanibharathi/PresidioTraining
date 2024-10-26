@@ -5,9 +5,12 @@ repos:
       - id: terraform-docs-go
 
         args: ["markdown", "table", "--output-file", "README.md", "./DevOpsTraning/Terraform/"]
-      
-#  checkov pre-commit hook
-  - repo: https://github.com/bridgecrewio/checkov.git
-    rev: ""
+  - repo: local
     hooks:
-      - id: checkov
+      - id: checkov-custom
+        name: Checkov Custom Scan
+        entry: ./checkov.sh
+        language: script
+        files: \.tf$
+        always_run: true
+        pass_filenames: false
