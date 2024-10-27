@@ -3,13 +3,4 @@ repos:
     rev: "v0.19.0"
     hooks:
       - id: terraform-docs-go
-        args: ["markdown", "table", "--output-file", "README.md", "./DevOpsTraning/Terraform/Try_azure/"]
-
-  - repo: local
-    hooks:
-      - id: commit-updated-readme
-        name: "Commit Updated README"
-        entry: sh -c 'git add ./DevOpsTraning/Terraform/Try_azure/README.md && git commit -m "Update README.md with terraform-docs" || true'
-        language: system
-        always_run: true
-        stages: [post-commit]
+        args: ["markdown", "table", "--output-file", "README.md", "./DevOpsTraning/Terraform/Try_modules/"]
