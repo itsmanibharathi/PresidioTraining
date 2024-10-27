@@ -41,15 +41,3 @@ resource "azurerm_storage_blob" "mani-blob" {
   type                   = "Block"
   source                 = "main.tf"
 }
-
-// rg 
-resource "azurerm_resource_group" "mani-rg3" {
-  name     = "mani-rg3"
-  location = "East US"
-}
-
-// rg kali
-resource "azurerm_resource_group" "mani-rg4" {
-  name     = "mani-rg4"
-  location = "East US"
-}
