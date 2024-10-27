@@ -43,7 +43,13 @@ resource "azurerm_storage_blob" "mani-blob" {
 }
 
 // rg 
-resource "azurerm_resource_group" "mani-rg2" {
-  name     = "mani-rg2"
+resource "azurerm_resource_group" "mani-rg3" {
+  name     = "mani-rg3"
+  location = "East US"
+}
+
+// rg kali
+resource "azurerm_resource_group" "mani-rg4" {
+  name     = "mani-rg4"
   location = "East US"
 }
