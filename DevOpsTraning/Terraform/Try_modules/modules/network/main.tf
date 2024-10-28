@@ -41,9 +41,8 @@ resource "aws_subnet" "private" {
 }
 
 # Default Route Table (Public Route Table) - Reuse the default route table for public subnets
-resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.main.id
-
+resource "aws_default_route_table" "public" {
+  default_route_table_id = aws_vpc.main.default_route_table_id
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
@@ -57,7 +56,7 @@ resource "aws_route_table" "public" {
 resource "aws_route_table_association" "public" {
   count          = length(aws_subnet.public)
   subnet_id      = aws_subnet.public[count.index].id
-  route_table_id = aws_route_table.public.id
+  route_table_id = aws_default_route_table.public.id
 }
 
 # NAT Gateway in one of the public subnets
@@ -93,26 +92,69 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.private.id
 }
 
-# Security Group for HTTP Traffic (Port 80)
-resource "aws_security_group" "http_sg" {
+# Security Group ec2 allow 80 amd 22
+resource "aws_security_group" "ec2-sg" {
   vpc_id = aws_vpc.main.id
-  name   = "http-allow-sg"
-
+  name   = "${var.Project}-ec2-sg"
+  description = "Allow 80 and 22"
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [aws_security_group.lb-sg.id]
   }
-
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [aws_security_group.bastion-sg.id]
+  }
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
+  depends_on = [aws_security_group.lb-sg, aws_security_group.bastion-sg]
   tags = {
-    Name = "${var.Project}-http-sg"
+    Name = "${var.Project}-ec2-sg"
+  }
+}
+
+// lb security group
+resource "aws_security_group" "lb-sg" {
+  vpc_id = aws_vpc.main.id
+  name   = "${var.Project}-lb-sg"
+  description = "Allow 80"
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+// bastion security group
+resource "aws_security_group" "bastion-sg" {
+  vpc_id = aws_vpc.main.id
+  name   = "${var.Project}-bastion-sg"
+  description = "Allow 22"
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["18.206.107.24/29"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }

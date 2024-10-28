@@ -10,7 +10,7 @@ provider "aws" {
 }
 
 module "network" {
-  source             = "./modules/network"
+  source             = "https://gitlab.presidio.com/manibharathim/PresidioTraining/"
   vpc_cidr           = var.vpc_cidr
   public_subnets     = var.public_subnets
   private_subnets    = var.private_subnets
@@ -21,7 +21,7 @@ module "network" {
 # module "load_balancer" {
 #   source            = "./modules/load_balancer"
 #   lb_name           = var.lb_name
-#   vpc_id            = module.network.vpc_id
+#   vpc_id            = module.network.vpc_idcle
 #   public_subnets    = module.network.public_subnet_ids
 #   security_groups   = [module.network.http_sg_id]
 #   target_group_name = var.target_group_name
