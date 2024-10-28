@@ -1,5 +1,13 @@
 provider "aws" {
   region = "us-east-1"
+  # comman tag
+  default_tags {
+   tags = {
+     Environment = "Test"
+     Owner       = "mani"
+     createBy     = "Terraform"
+   }
+ }
 }
 
 // vpc 
