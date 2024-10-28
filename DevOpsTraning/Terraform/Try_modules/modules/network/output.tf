@@ -10,6 +10,14 @@ output "private_subnet_ids" {
   value = aws_subnet.private[*].id
 }
 
-output "http_sg_id" {
-  value = aws_security_group.http_sg.id
+output "ec2-sg_id" {
+  value = aws_security_group.ec2-sg.id
+}
+
+output "lb-sg_id" {
+  value = aws_security_group.lb-sg.id
+}
+
+output "bastion-sg_id" {
+  value = aws_security_group.bastion-sg.id
 }
