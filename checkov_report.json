@@ -1,0 +1,2932 @@
+{
+    "check_type": "terraform",
+    "results": {
+        "passed_checks": [
+            {
+                "check_id": "CKV_AWS_41",
+                "bc_check_id": "BC_AWS_SECRETS_5",
+                "check_name": "Ensure no hard coded AWS access key and secret key exists in provider",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        1,
+                        "provider \"aws\" {\n"
+                    ],
+                    [
+                        2,
+                        "  region = var.aws_region\n"
+                    ],
+                    [
+                        3,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/mani.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                "file_line_range": [
+                    1,
+                    3
+                ],
+                "resource": "aws.default",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.provider.aws.credentials",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                "breadcrumbs": {
+                    "region": [
+                        {
+                            "type": "tfvar",
+                            "name": "aws_region",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/terrafrom.auto.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "aws_region",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_315",
+                "bc_check_id": "BC_AWS_GENERAL_226",
+                "check_name": "Ensure EC2 Auto Scaling groups use EC2 launch templates",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "launch_template"
+                    ]
+                },
+                "code_block": [
+                    [
+                        3,
+                        "resource \"aws_autoscaling_group\" \"main\" {\n"
+                    ],
+                    [
+                        4,
+                        "  desired_capacity    = var.desired_capacity\n"
+                    ],
+                    [
+                        5,
+                        "  max_size            = var.max_size\n"
+                    ],
+                    [
+                        6,
+                        "  min_size            = var.min_size\n"
+                    ],
+                    [
+                        7,
+                        "  vpc_zone_identifier = var.private_subnets\n"
+                    ],
+                    [
+                        8,
+                        "  target_group_arns   = [var.target_group_arn]\n"
+                    ],
+                    [
+                        9,
+                        "\n"
+                    ],
+                    [
+                        10,
+                        "  launch_template {\n"
+                    ],
+                    [
+                        11,
+                        "    id      = var.launch_template_id\n"
+                    ],
+                    [
+                        12,
+                        "    version = \"$Latest\"\n"
+                    ],
+                    [
+                        13,
+                        "  }\n"
+                    ],
+                    [
+                        14,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/auto_scaling_group/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/main.tf",
+                "file_line_range": [
+                    3,
+                    14
+                ],
+                "resource": "module.auto_scaling_group.aws_autoscaling_group.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.AutoScalingLaunchTemplate",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    34,
+                    42
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-315",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/main.tf",
+                "breadcrumbs": {
+                    "desired_capacity": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "desired_capacity",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "launch_template.id": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "launch_template_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "max_size": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "max_size",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_zone_identifier": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "private_subnets",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "target_group_arns": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "target_group_arn",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "min_size": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "min_size",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 20,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_88",
+                "bc_check_id": "BC_AWS_PUBLIC_12",
+                "check_name": "EC2 instance should not have public IP.",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "network_interfaces/[0]/associate_public_ip_address"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_launch_template\" \"main\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name          = var.template_name\n"
+                    ],
+                    [
+                        3,
+                        "  image_id      = var.ami_id\n"
+                    ],
+                    [
+                        4,
+                        "  instance_type = var.instance_type\n"
+                    ],
+                    [
+                        5,
+                        "  key_name      = var.key_name\n"
+                    ],
+                    [
+                        6,
+                        "  user_data     = base64encode(var.user_data)\n"
+                    ],
+                    [
+                        7,
+                        "  \n"
+                    ],
+                    [
+                        8,
+                        "  update_default_version = true \n"
+                    ],
+                    [
+                        9,
+                        "  network_interfaces {\n"
+                    ],
+                    [
+                        10,
+                        "    associate_public_ip_address = false\n"
+                    ],
+                    [
+                        11,
+                        "    subnet_id                   = var.subnet_id\n"
+                    ],
+                    [
+                        12,
+                        "  }\n"
+                    ],
+                    [
+                        13,
+                        "}"
+                    ]
+                ],
+                "file_path": "/modules/ec2_template/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "file_line_range": [
+                    1,
+                    13
+                ],
+                "resource": "module.ec2_template.aws_launch_template.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.EC2PublicIP",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    24,
+                    32
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-12",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "breadcrumbs": {
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "template_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "image_id": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "ami_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "network_interfaces.subnet_id": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "subnet_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "instance_type": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "instance_type",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "key_name": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "key_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 19,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_46",
+                "bc_check_id": "BC_AWS_SECRETS_1",
+                "check_name": "Ensure no hard-coded secrets exist in EC2 user data",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "user_data"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_launch_template\" \"main\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name          = var.template_name\n"
+                    ],
+                    [
+                        3,
+                        "  image_id      = var.ami_id\n"
+                    ],
+                    [
+                        4,
+                        "  instance_type = var.instance_type\n"
+                    ],
+                    [
+                        5,
+                        "  key_name      = var.key_name\n"
+                    ],
+                    [
+                        6,
+                        "  user_data     = base64encode(var.user_data)\n"
+                    ],
+                    [
+                        7,
+                        "  \n"
+                    ],
+                    [
+                        8,
+                        "  update_default_version = true \n"
+                    ],
+                    [
+                        9,
+                        "  network_interfaces {\n"
+                    ],
+                    [
+                        10,
+                        "    associate_public_ip_address = false\n"
+                    ],
+                    [
+                        11,
+                        "    subnet_id                   = var.subnet_id\n"
+                    ],
+                    [
+                        12,
+                        "  }\n"
+                    ],
+                    [
+                        13,
+                        "}"
+                    ]
+                ],
+                "file_path": "/modules/ec2_template/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "file_line_range": [
+                    1,
+                    13
+                ],
+                "resource": "module.ec2_template.aws_launch_template.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.EC2Credentials",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    24,
+                    32
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-1",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "breadcrumbs": {
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "template_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "image_id": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "ami_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "network_interfaces.subnet_id": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "subnet_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "instance_type": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "instance_type",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "key_name": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "key_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 19,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_341",
+                "bc_check_id": "BC_AWS_GENERAL_244",
+                "check_name": "Ensure Launch template should not have a metadata response hop limit greater than 1",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "metadata_options/[0]/http_put_response_hop_limit"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_launch_template\" \"main\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name          = var.template_name\n"
+                    ],
+                    [
+                        3,
+                        "  image_id      = var.ami_id\n"
+                    ],
+                    [
+                        4,
+                        "  instance_type = var.instance_type\n"
+                    ],
+                    [
+                        5,
+                        "  key_name      = var.key_name\n"
+                    ],
+                    [
+                        6,
+                        "  user_data     = base64encode(var.user_data)\n"
+                    ],
+                    [
+                        7,
+                        "  \n"
+                    ],
+                    [
+                        8,
+                        "  update_default_version = true \n"
+                    ],
+                    [
+                        9,
+                        "  network_interfaces {\n"
+                    ],
+                    [
+                        10,
+                        "    associate_public_ip_address = false\n"
+                    ],
+                    [
+                        11,
+                        "    subnet_id                   = var.subnet_id\n"
+                    ],
+                    [
+                        12,
+                        "  }\n"
+                    ],
+                    [
+                        13,
+                        "}"
+                    ]
+                ],
+                "file_path": "/modules/ec2_template/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "file_line_range": [
+                    1,
+                    13
+                ],
+                "resource": "module.ec2_template.aws_launch_template.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LaunchTemplateMetadataHop",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    24,
+                    32
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-341",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "breadcrumbs": {
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "template_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "image_id": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "ami_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "network_interfaces.subnet_id": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "subnet_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "instance_type": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "instance_type",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "key_name": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "key_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 19,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_328",
+                "bc_check_id": "BC_AWS_NETWORKING_89",
+                "check_name": "Ensure that ALB is configured with defensive or strictest desync mitigation mode",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "desync_mitigation_mode"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_lb\" \"main\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name               = var.lb_name\n"
+                    ],
+                    [
+                        3,
+                        "  internal           = false\n"
+                    ],
+                    [
+                        4,
+                        "  load_balancer_type = \"application\"\n"
+                    ],
+                    [
+                        5,
+                        "  security_groups    = var.security_groups\n"
+                    ],
+                    [
+                        6,
+                        "  subnets            = var.public_subnets\n"
+                    ],
+                    [
+                        7,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/load_balancer/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "file_line_range": [
+                    1,
+                    7
+                ],
+                "resource": "module.load_balancer.aws_lb.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.ALBDesyncMode",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    13,
+                    22
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-328",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "breadcrumbs": {
+                    "security_groups": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "security_groups",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "subnets": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "public_subnets",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "lb_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 18,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_130",
+                "bc_check_id": "BC_AWS_NETWORKING_53",
+                "check_name": "Ensure VPC subnets do not assign public IP by default",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "map_public_ip_on_launch"
+                    ]
+                },
+                "code_block": [
+                    [
+                        21,
+                        "resource \"aws_subnet\" \"private\" {\n"
+                    ],
+                    [
+                        22,
+                        "  count             = length(var.private_subnets)\n"
+                    ],
+                    [
+                        23,
+                        "  vpc_id            = aws_vpc.main.id\n"
+                    ],
+                    [
+                        24,
+                        "  cidr_block        = var.private_subnets[count.index]\n"
+                    ],
+                    [
+                        25,
+                        "  availability_zone = var.availability_zones[count.index]\n"
+                    ],
+                    [
+                        26,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/network/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "file_line_range": [
+                    21,
+                    26
+                ],
+                "resource": "module.network.aws_subnet.private[0]",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SubnetPublicIP",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    5,
+                    11
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "network",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 17,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_24",
+                "bc_check_id": "BC_AWS_NETWORKING_1",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        71,
+                        "resource \"aws_security_group\" \"http_sg\" {\n"
+                    ],
+                    [
+                        72,
+                        "  vpc_id = aws_vpc.main.id\n"
+                    ],
+                    [
+                        73,
+                        "  name   = \"http-allow-sg\"\n"
+                    ],
+                    [
+                        74,
+                        "\n"
+                    ],
+                    [
+                        75,
+                        "  ingress {\n"
+                    ],
+                    [
+                        76,
+                        "    from_port   = 80\n"
+                    ],
+                    [
+                        77,
+                        "    to_port     = 80\n"
+                    ],
+                    [
+                        78,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        79,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        80,
+                        "  }\n"
+                    ],
+                    [
+                        81,
+                        "\n"
+                    ],
+                    [
+                        82,
+                        "  egress {\n"
+                    ],
+                    [
+                        83,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        84,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        85,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        86,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        87,
+                        "  }\n"
+                    ],
+                    [
+                        88,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/network/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "file_line_range": [
+                    71,
+                    88
+                ],
+                "resource": "module.network.aws_security_group.http_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress22",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    5,
+                    11
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "network",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 17,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_277",
+                "bc_check_id": "BC_AWS_NETWORKING_78",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        71,
+                        "resource \"aws_security_group\" \"http_sg\" {\n"
+                    ],
+                    [
+                        72,
+                        "  vpc_id = aws_vpc.main.id\n"
+                    ],
+                    [
+                        73,
+                        "  name   = \"http-allow-sg\"\n"
+                    ],
+                    [
+                        74,
+                        "\n"
+                    ],
+                    [
+                        75,
+                        "  ingress {\n"
+                    ],
+                    [
+                        76,
+                        "    from_port   = 80\n"
+                    ],
+                    [
+                        77,
+                        "    to_port     = 80\n"
+                    ],
+                    [
+                        78,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        79,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        80,
+                        "  }\n"
+                    ],
+                    [
+                        81,
+                        "\n"
+                    ],
+                    [
+                        82,
+                        "  egress {\n"
+                    ],
+                    [
+                        83,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        84,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        85,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        86,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        87,
+                        "  }\n"
+                    ],
+                    [
+                        88,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/network/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "file_line_range": [
+                    71,
+                    88
+                ],
+                "resource": "module.network.aws_security_group.http_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngressAny",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    5,
+                    11
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "network",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 17,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_25",
+                "bc_check_id": "BC_AWS_NETWORKING_2",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        71,
+                        "resource \"aws_security_group\" \"http_sg\" {\n"
+                    ],
+                    [
+                        72,
+                        "  vpc_id = aws_vpc.main.id\n"
+                    ],
+                    [
+                        73,
+                        "  name   = \"http-allow-sg\"\n"
+                    ],
+                    [
+                        74,
+                        "\n"
+                    ],
+                    [
+                        75,
+                        "  ingress {\n"
+                    ],
+                    [
+                        76,
+                        "    from_port   = 80\n"
+                    ],
+                    [
+                        77,
+                        "    to_port     = 80\n"
+                    ],
+                    [
+                        78,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        79,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        80,
+                        "  }\n"
+                    ],
+                    [
+                        81,
+                        "\n"
+                    ],
+                    [
+                        82,
+                        "  egress {\n"
+                    ],
+                    [
+                        83,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        84,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        85,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        86,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        87,
+                        "  }\n"
+                    ],
+                    [
+                        88,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/network/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "file_line_range": [
+                    71,
+                    88
+                ],
+                "resource": "module.network.aws_security_group.http_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress3389",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    5,
+                    11
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "network",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 17,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_130",
+                "bc_check_id": "BC_AWS_NETWORKING_53",
+                "check_name": "Ensure VPC subnets do not assign public IP by default",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "map_public_ip_on_launch"
+                    ]
+                },
+                "code_block": [
+                    [
+                        21,
+                        "resource \"aws_subnet\" \"private\" {\n"
+                    ],
+                    [
+                        22,
+                        "  count             = length(var.private_subnets)\n"
+                    ],
+                    [
+                        23,
+                        "  vpc_id            = aws_vpc.main.id\n"
+                    ],
+                    [
+                        24,
+                        "  cidr_block        = var.private_subnets[count.index]\n"
+                    ],
+                    [
+                        25,
+                        "  availability_zone = var.availability_zones[count.index]\n"
+                    ],
+                    [
+                        26,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/network/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "file_line_range": [
+                    21,
+                    26
+                ],
+                "resource": "module.network.aws_subnet.private[1]",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SubnetPublicIP",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    5,
+                    11
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "network",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 17,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            }
+        ],
+        "failed_checks": [
+            {
+                "check_id": "CKV_AWS_153",
+                "bc_check_id": "BC_AWS_GENERAL_82",
+                "check_name": "Autoscaling groups should supply tags to launch configurations",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "tag",
+                        "tags"
+                    ]
+                },
+                "code_block": [
+                    [
+                        3,
+                        "resource \"aws_autoscaling_group\" \"main\" {\n"
+                    ],
+                    [
+                        4,
+                        "  desired_capacity    = var.desired_capacity\n"
+                    ],
+                    [
+                        5,
+                        "  max_size            = var.max_size\n"
+                    ],
+                    [
+                        6,
+                        "  min_size            = var.min_size\n"
+                    ],
+                    [
+                        7,
+                        "  vpc_zone_identifier = var.private_subnets\n"
+                    ],
+                    [
+                        8,
+                        "  target_group_arns   = [var.target_group_arn]\n"
+                    ],
+                    [
+                        9,
+                        "\n"
+                    ],
+                    [
+                        10,
+                        "  launch_template {\n"
+                    ],
+                    [
+                        11,
+                        "    id      = var.launch_template_id\n"
+                    ],
+                    [
+                        12,
+                        "    version = \"$Latest\"\n"
+                    ],
+                    [
+                        13,
+                        "  }\n"
+                    ],
+                    [
+                        14,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/auto_scaling_group/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/main.tf",
+                "file_line_range": [
+                    3,
+                    14
+                ],
+                "resource": "module.auto_scaling_group.aws_autoscaling_group.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.AutoScalingTagging",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    34,
+                    42
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/autoscaling-groups-should-supply-tags-to-launch-configurations",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/main.tf",
+                "breadcrumbs": {
+                    "desired_capacity": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "desired_capacity",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "launch_template.id": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "launch_template_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "max_size": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "max_size",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_zone_identifier": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "private_subnets",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "target_group_arns": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "target_group_arn",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "min_size": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "min_size",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/auto_scaling_group/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "auto_scaling_group",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 20,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_79",
+                "bc_check_id": "BC_AWS_GENERAL_31",
+                "check_name": "Ensure Instance Metadata Service Version 1 is not enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "metadata_options/[0]/http_tokens"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_launch_template\" \"main\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name          = var.template_name\n"
+                    ],
+                    [
+                        3,
+                        "  image_id      = var.ami_id\n"
+                    ],
+                    [
+                        4,
+                        "  instance_type = var.instance_type\n"
+                    ],
+                    [
+                        5,
+                        "  key_name      = var.key_name\n"
+                    ],
+                    [
+                        6,
+                        "  user_data     = base64encode(var.user_data)\n"
+                    ],
+                    [
+                        7,
+                        "  \n"
+                    ],
+                    [
+                        8,
+                        "  update_default_version = true \n"
+                    ],
+                    [
+                        9,
+                        "  network_interfaces {\n"
+                    ],
+                    [
+                        10,
+                        "    associate_public_ip_address = false\n"
+                    ],
+                    [
+                        11,
+                        "    subnet_id                   = var.subnet_id\n"
+                    ],
+                    [
+                        12,
+                        "  }\n"
+                    ],
+                    [
+                        13,
+                        "}"
+                    ]
+                ],
+                "file_path": "/modules/ec2_template/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "file_line_range": [
+                    1,
+                    13
+                ],
+                "resource": "module.ec2_template.aws_launch_template.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IMDSv1Disabled",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    24,
+                    32
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-31",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/main.tf",
+                "breadcrumbs": {
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "template_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "image_id": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "ami_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "network_interfaces.subnet_id": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "subnet_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "instance_type": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "instance_type",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "key_name": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "key_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/ec2_template/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "ec2_template",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 19,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_150",
+                "bc_check_id": "BC_AWS_NETWORKING_62",
+                "check_name": "Ensure that Load Balancer has deletion protection enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "enable_deletion_protection"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_lb\" \"main\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name               = var.lb_name\n"
+                    ],
+                    [
+                        3,
+                        "  internal           = false\n"
+                    ],
+                    [
+                        4,
+                        "  load_balancer_type = \"application\"\n"
+                    ],
+                    [
+                        5,
+                        "  security_groups    = var.security_groups\n"
+                    ],
+                    [
+                        6,
+                        "  subnets            = var.public_subnets\n"
+                    ],
+                    [
+                        7,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/load_balancer/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "file_line_range": [
+                    1,
+                    7
+                ],
+                "resource": "module.load_balancer.aws_lb.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LBDeletionProtection",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    13,
+                    22
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-150",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "breadcrumbs": {
+                    "security_groups": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "security_groups",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "subnets": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "public_subnets",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "lb_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 18,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_91",
+                "bc_check_id": "BC_AWS_LOGGING_22",
+                "check_name": "Ensure the ELBv2 (Application/Network) has access logging enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "access_logs/0/enabled/0"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_lb\" \"main\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name               = var.lb_name\n"
+                    ],
+                    [
+                        3,
+                        "  internal           = false\n"
+                    ],
+                    [
+                        4,
+                        "  load_balancer_type = \"application\"\n"
+                    ],
+                    [
+                        5,
+                        "  security_groups    = var.security_groups\n"
+                    ],
+                    [
+                        6,
+                        "  subnets            = var.public_subnets\n"
+                    ],
+                    [
+                        7,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/load_balancer/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "file_line_range": [
+                    1,
+                    7
+                ],
+                "resource": "module.load_balancer.aws_lb.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.ELBv2AccessLogs",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    13,
+                    22
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-logging-22",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "breadcrumbs": {
+                    "security_groups": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "security_groups",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "subnets": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "public_subnets",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "lb_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 18,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_131",
+                "bc_check_id": "BC_AWS_NETWORKING_41",
+                "check_name": "Ensure that ALB drops HTTP headers",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "drop_invalid_header_fields"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_lb\" \"main\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name               = var.lb_name\n"
+                    ],
+                    [
+                        3,
+                        "  internal           = false\n"
+                    ],
+                    [
+                        4,
+                        "  load_balancer_type = \"application\"\n"
+                    ],
+                    [
+                        5,
+                        "  security_groups    = var.security_groups\n"
+                    ],
+                    [
+                        6,
+                        "  subnets            = var.public_subnets\n"
+                    ],
+                    [
+                        7,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/load_balancer/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "file_line_range": [
+                    1,
+                    7
+                ],
+                "resource": "module.load_balancer.aws_lb.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.ALBDropHttpHeaders",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    13,
+                    22
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-alb-drops-http-headers",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "breadcrumbs": {
+                    "security_groups": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "security_groups",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "subnets": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "public_subnets",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "lb_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 18,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_378",
+                "bc_check_id": null,
+                "check_name": "Ensure AWS Load Balancer doesn't use HTTP protocol",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "protocol"
+                    ]
+                },
+                "code_block": [
+                    [
+                        9,
+                        "resource \"aws_lb_target_group\" \"main\" {\n"
+                    ],
+                    [
+                        10,
+                        "  name     = var.target_group_name\n"
+                    ],
+                    [
+                        11,
+                        "  port     = var.target_port\n"
+                    ],
+                    [
+                        12,
+                        "  protocol = \"HTTP\"\n"
+                    ],
+                    [
+                        13,
+                        "  vpc_id   = var.vpc_id\n"
+                    ],
+                    [
+                        14,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/load_balancer/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "file_line_range": [
+                    9,
+                    14
+                ],
+                "resource": "module.load_balancer.aws_lb_target_group.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LBTargetGroup",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    13,
+                    22
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "breadcrumbs": {
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "target_group_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_id": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "port": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "target_port",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 18,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_261",
+                "bc_check_id": "BC_AWS_GENERAL_177",
+                "check_name": "Ensure HTTP HTTPS Target group defines Healthcheck",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "health_check"
+                    ]
+                },
+                "code_block": [
+                    [
+                        9,
+                        "resource \"aws_lb_target_group\" \"main\" {\n"
+                    ],
+                    [
+                        10,
+                        "  name     = var.target_group_name\n"
+                    ],
+                    [
+                        11,
+                        "  port     = var.target_port\n"
+                    ],
+                    [
+                        12,
+                        "  protocol = \"HTTP\"\n"
+                    ],
+                    [
+                        13,
+                        "  vpc_id   = var.vpc_id\n"
+                    ],
+                    [
+                        14,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/load_balancer/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "file_line_range": [
+                    9,
+                    14
+                ],
+                "resource": "module.load_balancer.aws_lb_target_group.main",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LBTargetGroupsDefinesHealthcheck",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    13,
+                    22
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-kendra-index-server-side-encryption-uses-customer-managed-keys-cmks",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "breadcrumbs": {
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "target_group_name",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_id": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc_id",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "port": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "target_port",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 18,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_2",
+                "bc_check_id": "BC_AWS_NETWORKING_29",
+                "check_name": "Ensure ALB protocol is HTTPS",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "protocol"
+                    ]
+                },
+                "code_block": [
+                    [
+                        16,
+                        "resource \"aws_lb_listener\" \"http\" {\n"
+                    ],
+                    [
+                        17,
+                        "  load_balancer_arn = aws_lb.main.arn\n"
+                    ],
+                    [
+                        18,
+                        "  port              = var.listener_port\n"
+                    ],
+                    [
+                        19,
+                        "  protocol          = \"HTTP\"\n"
+                    ],
+                    [
+                        20,
+                        "\n"
+                    ],
+                    [
+                        21,
+                        "  default_action {\n"
+                    ],
+                    [
+                        22,
+                        "    type             = \"forward\"\n"
+                    ],
+                    [
+                        23,
+                        "    target_group_arn = aws_lb_target_group.main.arn\n"
+                    ],
+                    [
+                        24,
+                        "  }\n"
+                    ],
+                    [
+                        25,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/load_balancer/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "file_line_range": [
+                    16,
+                    25
+                ],
+                "resource": "module.load_balancer.aws_lb_listener.http",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.ALBListenerHTTPS",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    13,
+                    22
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-29",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/main.tf",
+                "breadcrumbs": {
+                    "port": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "listener_port",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/load_balancer/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "load_balancer",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 18,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_130",
+                "bc_check_id": "BC_AWS_NETWORKING_53",
+                "check_name": "Ensure VPC subnets do not assign public IP by default",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "map_public_ip_on_launch"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"aws_subnet\" \"public\" {\n"
+                    ],
+                    [
+                        13,
+                        "  count                   = length(var.public_subnets)\n"
+                    ],
+                    [
+                        14,
+                        "  vpc_id                  = aws_vpc.main.id\n"
+                    ],
+                    [
+                        15,
+                        "  cidr_block              = var.public_subnets[count.index]\n"
+                    ],
+                    [
+                        16,
+                        "  map_public_ip_on_launch = true\n"
+                    ],
+                    [
+                        17,
+                        "  availability_zone       = var.availability_zones[count.index]\n"
+                    ],
+                    [
+                        18,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/network/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "file_line_range": [
+                    12,
+                    18
+                ],
+                "resource": "module.network.aws_subnet.public[0]",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SubnetPublicIP",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    5,
+                    11
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "network",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 17,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_260",
+                "bc_check_id": "BC_AWS_NETWORKING_67",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "ingress/[0]/from_port",
+                        "ingress/[0]/to_port",
+                        "ingress/[0]/cidr_blocks",
+                        "ingress/[0]/ipv6_cidr_blocks"
+                    ]
+                },
+                "code_block": [
+                    [
+                        71,
+                        "resource \"aws_security_group\" \"http_sg\" {\n"
+                    ],
+                    [
+                        72,
+                        "  vpc_id = aws_vpc.main.id\n"
+                    ],
+                    [
+                        73,
+                        "  name   = \"http-allow-sg\"\n"
+                    ],
+                    [
+                        74,
+                        "\n"
+                    ],
+                    [
+                        75,
+                        "  ingress {\n"
+                    ],
+                    [
+                        76,
+                        "    from_port   = 80\n"
+                    ],
+                    [
+                        77,
+                        "    to_port     = 80\n"
+                    ],
+                    [
+                        78,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        79,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        80,
+                        "  }\n"
+                    ],
+                    [
+                        81,
+                        "\n"
+                    ],
+                    [
+                        82,
+                        "  egress {\n"
+                    ],
+                    [
+                        83,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        84,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        85,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        86,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        87,
+                        "  }\n"
+                    ],
+                    [
+                        88,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/network/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "file_line_range": [
+                    71,
+                    88
+                ],
+                "resource": "module.network.aws_security_group.http_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress80",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    5,
+                    11
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "network",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 17,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_23",
+                "bc_check_id": "BC_AWS_NETWORKING_31",
+                "check_name": "Ensure every security group and rule has a description",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "egress/[0]",
+                        "ingress/[0]"
+                    ]
+                },
+                "code_block": [
+                    [
+                        71,
+                        "resource \"aws_security_group\" \"http_sg\" {\n"
+                    ],
+                    [
+                        72,
+                        "  vpc_id = aws_vpc.main.id\n"
+                    ],
+                    [
+                        73,
+                        "  name   = \"http-allow-sg\"\n"
+                    ],
+                    [
+                        74,
+                        "\n"
+                    ],
+                    [
+                        75,
+                        "  ingress {\n"
+                    ],
+                    [
+                        76,
+                        "    from_port   = 80\n"
+                    ],
+                    [
+                        77,
+                        "    to_port     = 80\n"
+                    ],
+                    [
+                        78,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        79,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        80,
+                        "  }\n"
+                    ],
+                    [
+                        81,
+                        "\n"
+                    ],
+                    [
+                        82,
+                        "  egress {\n"
+                    ],
+                    [
+                        83,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        84,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        85,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        86,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        87,
+                        "  }\n"
+                    ],
+                    [
+                        88,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/network/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "file_line_range": [
+                    71,
+                    88
+                ],
+                "resource": "module.network.aws_security_group.http_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupRuleDescription",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    5,
+                    11
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "network",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 17,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_130",
+                "bc_check_id": "BC_AWS_NETWORKING_53",
+                "check_name": "Ensure VPC subnets do not assign public IP by default",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "map_public_ip_on_launch"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"aws_subnet\" \"public\" {\n"
+                    ],
+                    [
+                        13,
+                        "  count                   = length(var.public_subnets)\n"
+                    ],
+                    [
+                        14,
+                        "  vpc_id                  = aws_vpc.main.id\n"
+                    ],
+                    [
+                        15,
+                        "  cidr_block              = var.public_subnets[count.index]\n"
+                    ],
+                    [
+                        16,
+                        "  map_public_ip_on_launch = true\n"
+                    ],
+                    [
+                        17,
+                        "  availability_zone       = var.availability_zones[count.index]\n"
+                    ],
+                    [
+                        18,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/modules/network/main.tf",
+                "file_abs_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "repo_file_path": "/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "file_line_range": [
+                    12,
+                    18
+                ],
+                "resource": "module.network.aws_subnet.public[1]",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SubnetPublicIP",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/mani.tf",
+                "caller_file_line_range": [
+                    5,
+                    11
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/modules/network/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "network",
+                            "path": "/Users/manibharathi/Codestack/PresidioTraining/DevOpsTraning/Terraform/Try_modules/mani.tf",
+                            "idx": 17,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            }
+        ],
+        "skipped_checks": [],
+        "parsing_errors": []
+    },
+    "summary": {
+        "passed": 11,
+        "failed": 12,
+        "skipped": 0,
+        "parsing_errors": 0,
+        "resource_count": 18,
+        "checkov_version": "3.2.260"
+    },
+    "url": "Add an api key '--bc-api-key <api-key>' to see more detailed insights via https://bridgecrew.cloud"
+}
