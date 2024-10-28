@@ -1,3 +1,20 @@
+# Project name
+variable "Project" {
+  description = "Name of the project"
+  type        = string
+}
+
+# Environment and Owner tags
+variable "environment" {
+  description = "Environment tag for resources."
+  type        = string
+}
+variable "owner" {
+  description = "Owner tag for resources."
+  type        = string
+}
+
+
 # AWS Region
 variable "aws_region" {
   description = "The AWS region to deploy resources in."
@@ -88,5 +105,6 @@ variable "min_size" {
 
 variable "user_data" {
   description = "User data to run on the EC2 instances."
-  type        = string 
+  type        = string
 }
+
