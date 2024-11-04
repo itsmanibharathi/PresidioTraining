@@ -6,3 +6,8 @@
 [submodule "PiplineMigration"]
 	path = MigrationTraining/Day3/PiplineMigration
 	url = https://gitlab.com/Owncodezs/Docker-image-test-app
+
+
+[submodule "TerraformModules"]
+	path = DevOpsTraning/Terraform/Challange/module
+	url = git@gitlab.presidio.com:manibharathim/tf.git
