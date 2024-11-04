@@ -10,7 +10,7 @@ provider "aws" {
 }
 
 module "network" {
-  source             = "https://gitlab.presidio.com/manibharathim/PresidioTraining/"
+  source             = "./modules/network"
   vpc_cidr           = var.vpc_cidr
   public_subnets     = var.public_subnets
   private_subnets    = var.private_subnets
