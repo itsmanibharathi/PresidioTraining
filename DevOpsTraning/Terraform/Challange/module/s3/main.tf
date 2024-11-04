@@ -2,14 +2,14 @@
 resource "aws_s3_bucket" "bucket" {
   bucket = var.bucket_name
   tags = {
-    name        = "${var.bucket_name}-bucket"
+    name = "${var.bucket_name}-bucket"
   }
 }
 
 # Versioning
 resource "aws_s3_bucket_versioning" "versioning" {
   bucket = aws_s3_bucket.bucket.id
-  versioning_configuration{
+  versioning_configuration {
     status = var.enable_versioning ? "Enabled" : "Suspended"
   }
 }
@@ -24,10 +24,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "server_side_encry
   }
 }
 
-
 # Logging
 resource "aws_s3_bucket_logging" "logging" {
-  bucket = aws_s3_bucket.bucket.id
+  bucket        = aws_s3_bucket.bucket.id
   target_bucket = var.logging_bucket
   target_prefix = var.logging_prefix
 }
@@ -40,6 +39,7 @@ resource "aws_s3_bucket_public_access_block" "public_access_block" {
   ignore_public_acls      = var.ignore_public_acls
   restrict_public_buckets = var.restrict_public_buckets
 }
+
 
 # # Cross-account access policy
 # resource "aws_s3_bucket_policy" "bucket_policy" {
