@@ -18,15 +18,15 @@ provider "aws" {
 
 
 resource "aws_iam_role" "cross_account_role" {
-  provider = aws.cross_account
-  name     = "cross_account_role"
+
+  name = "cross_account_role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
         Effect = "Allow",
         Principal = {
-          AWS = var.presidio_acount_iam_role_arns
+          AWS = var.cross_account_iam_role_arns
         },
         Action = "sts:AssumeRole"
       }
@@ -36,15 +36,14 @@ resource "aws_iam_role" "cross_account_role" {
 
 // create the iam policy for cross-account access in cross_account
 resource "aws_iam_policy" "cross_account_policy" {
-  provider = aws.cross_account
   name        = "cross_account_policy"
   description = "Allow cross-account access to S3 bucket"
-  policy      = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
-        Effect   = "Allow",
-        Action   = ["s3:PutObject", "s3:GetObject", "s3:ListBucket", "s3:DeleteObject"],
+        Effect = "Allow",
+        Action = ["s3:PutObject", "s3:GetObject", "s3:ListBucket", "s3:DeleteObject"],
         Resource = [
           "arn:aws:s3:::${var.bucket_name}",
           "arn:aws:s3:::${var.bucket_name}/*"
@@ -63,7 +62,6 @@ resource "aws_iam_policy" "cross_account_policy" {
 
 // Attach the policy to the role in the cross_account
 resource "aws_iam_role_policy_attachment" "attach_cross_account_policy" {
-  provider   = aws.cross_account
   role       = aws_iam_role.cross_account_role.name
   policy_arn = aws_iam_policy.cross_account_policy.arn
 }

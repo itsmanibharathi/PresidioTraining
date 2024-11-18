@@ -88,8 +88,7 @@ variable "restrict_public_buckets" {
 
 variable "cross_account_iam_role_arns" {
   description = "List of IAM role ARNs from other accounts that are allowed cross-account access"
-  type        = list(string)
-  default     = []
+  type        = string
 }
 
 
