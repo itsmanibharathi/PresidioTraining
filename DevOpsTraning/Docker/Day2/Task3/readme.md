@@ -9,12 +9,12 @@ This guide provides CLI commands to create Docker secrets for storing MySQL data
 
 2. Create MySQL username secret:
    ```sh
-   echo "your_mysql_username" | docker secret create mysql_username -
+   echo "my_mysql_username" | docker secret create mysql_username -
    ```
 
 3. Create MySQL password secret:
    ```sh
-   echo "your_mysql_password" | docker secret create mysql_password -
+   echo "my_mysql_password" | docker secret create mysql_password -
    ```
 
 4. Deploy the service:
