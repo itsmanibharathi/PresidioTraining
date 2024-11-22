@@ -1,0 +1,18 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 9095
+
+clients:
+  - url: http://loki:3100/api/prom/push  # Loki container URL
+
+positions:
+  filename: /tmp/positions.yaml
+
+scrape_configs:
+  - job_name: nginx-logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: nginx
+          __path__: /var/log/nginx/*.log  # Path to Nginx logs
