@@ -1,10 +1,13 @@
+version: "3.8"
+
 services:
   proxy:
     image: nginx:latest
     ports:
       - "80:80"
     volumes:
-      - ./Proxy/nginx.conf:/etc/nginx/nginx.conf
+      - ./Config/nginx.conf:/etc/nginx/nginx.conf
+      - proxy_logs:/var/log/nginx
     networks:
       - public
       - private
@@ -22,11 +25,11 @@ services:
   backend:
     build: ./Backend
     environment:
-      DB_HOST: database
-      DB_USER: user
-      DB_PASSWORD: userpassword
-      DB_NAME: exampledb
-      PORT: 5000
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      PORT: ${PORT}
     networks:
       - private
     deploy:
@@ -36,14 +39,70 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: userpassword
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - ./Database/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - private
+  
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./Config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - private
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginxexporter
+    command:
+      - '-nginx.scrape-uri=http://proxy/nginx_status'
+    ports:
+      - 9113:9113
+    networks:
+      - private
+  
+
+  loki:
+    image: grafana/loki
+    container_name: loki
+    volumes:
+      - ./Config/loki-config.yaml:/etc/loki/config.yaml  # Loki config file
+    networks:
+      - private
+    restart: always
+
+  promtail:
+    image: grafana/promtail
+    container_name: promtail
+    volumes:
+      -  proxy_logs:/var/log/nginx
+      - ./Config/promtail-config.yaml:/etc/promtail/config.yml  # Promtail config file
+    networks:
+      - private
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"  # Grafana web UI
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: "admin"  # Set Grafana admin password
+    volumes:
+      - grafana-data:/var/lib/grafana  # Persist Grafana data
+    networks:
+      - public
+      - private
+    restart: always
+
+
+  
 
 networks:
   public:
@@ -53,4 +112,7 @@ networks:
     driver: bridge
     internal: true
 
-  
+volumes:
+  grafana-data:
+  prometheus_data:
+  proxy_logs:

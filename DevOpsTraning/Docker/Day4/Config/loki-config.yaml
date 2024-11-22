@@ -1,0 +1,20 @@
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+
+# Configure where to store logs
+storage_config:
+  boltdb_shipper:
+    active_index_directory: /data/loki/index
+    cache_location: /data/loki/cache
+    storage: /data/loki/chunks
+
+# Limits
+limits_config:
+  max_query_length: 7d
+  max_entries_limit: 5000
+
+# Scrape config (no need for Prometheus to scrape logs)
+scraping:
+  interval: 15s
