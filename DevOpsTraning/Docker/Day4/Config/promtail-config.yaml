@@ -9,10 +9,18 @@ positions:
   filename: /tmp/positions.yaml
 
 scrape_configs:
-  - job_name: nginx-logs
+  - job_name: proxy-logs
     static_configs:
       - targets:
           - localhost
         labels:
-          job: nginx
+          job: proxy
           __path__: /var/log/nginx/*.log  # Path to Nginx logs
+
+  - job_name: backend-logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: backend
+          __path__: /var/log/backend/*.log  # Path to backend logs

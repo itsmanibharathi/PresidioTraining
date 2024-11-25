@@ -2,6 +2,16 @@ from flask import Flask, jsonify, Response
 import pymysql
 from flask_cors import CORS
 import os
+import logging
+
+# Configure logging
+LOG_FILE_PATH = '/var/log/backend/flask_error.log'  # Specify the log file path
+logging.basicConfig(
+    level=logging.ERROR,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    filename=LOG_FILE_PATH,  # Log errors to the specified file
+    filemode='a'  # Append to the log file
+)
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -16,7 +26,9 @@ def get_data():
     required_env_vars = ['DB_HOST', 'DB_USER', 'DB_PASSWORD', 'DB_NAME', 'PORT']
     for var in required_env_vars:
         if var not in os.environ:
-            return jsonify({"error": f"Missing environment variable: {var}"}), 500
+            error_message = f"Missing environment variable: {var}"
+            logging.error(error_message)  # Log the error
+            return jsonify({"error": error_message}), 500
 
     try:
         # Connect to the database
@@ -38,11 +50,15 @@ def get_data():
         return jsonify(rows)
 
     except pymysql.MySQLError as e:
-        # Handle MySQL connection or query errors
-        return jsonify({"error": f"MySQL error: {str(e)}"}), 500
+        # Log MySQL-specific errors
+        error_message = f"MySQL error: {str(e)}"
+        logging.error(error_message)  # Log the error
+        return jsonify({"error": error_message}), 500
     except Exception as e:
-        # Handle any other errors
-        return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+        # Log any other errors
+        error_message = f"An error occurred: {str(e)}"
+        logging.error(error_message)  # Log the error
+        return jsonify({"error": error_message}), 500
 
 if __name__ == '__main__':
     # Ensure the PORT environment variable is set
