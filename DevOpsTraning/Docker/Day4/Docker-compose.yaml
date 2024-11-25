@@ -1,5 +1,4 @@
 version: "3.8"
-
 services:
   proxy:
     image: nginx:latest
@@ -30,6 +29,8 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
       PORT: ${PORT}
+    volumes:
+      - backend_logs:/var/log/backend
     networks:
       - private
     deploy:
@@ -82,6 +83,7 @@ services:
     container_name: promtail
     volumes:
       -  proxy_logs:/var/log/nginx
+      -  backend_logs:/var/log/backend
       - ./Config/promtail-config.yaml:/etc/promtail/config.yml  # Promtail config file
     networks:
       - private
@@ -116,3 +118,4 @@ volumes:
   grafana-data:
   prometheus_data:
   proxy_logs:
+  backend_logs:

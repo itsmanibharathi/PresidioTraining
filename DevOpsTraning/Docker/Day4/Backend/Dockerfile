@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY app.py /app/
 
-RUN pip install flask pymysql cryptography flask_cors
+RUN pip install flask pymysql cryptography flask_cors logging
 
 ENV POART=6000
 ENV DB_HOST=host.docker.internal
