@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: trainee-manibharathi
+spec:
+  serviceName: "mysql"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        args:
+          - "--ignore-db-dir=lost+found"
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-config
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-config
+              key: MYSQL_DATABASE
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-config
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-config
+              key: MYSQL_PASSWORD
+        volumeMounts:
+        - name: mysql-data
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 5Gi
+      storageClassName: gp3
