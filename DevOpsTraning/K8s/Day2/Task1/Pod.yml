@@ -1,0 +1,14 @@
+# k8s create nginx pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  namespace: trainee-manibharathi
+  labels:
+    app: task-1
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      ports:
+        - containerPort: 80
