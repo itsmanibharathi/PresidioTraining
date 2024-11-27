@@ -1,0 +1,38 @@
+# Mysql with Statefulset
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: trainee-manibharathi
+  labels:
+    app: task-3
+spec:
+  serviceName: mysql
+  replicas: 3
+  selector:
+    matchLabels:
+      app: task-3
+  template:
+    metadata:
+      labels:
+        app: task-3
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-persistent-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 5Gi
