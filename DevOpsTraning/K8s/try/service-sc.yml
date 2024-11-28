@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: trainee-manibharathi-token
+  namespace: trainee-manibharathi
+  annotations:
+    kubernetes.io/service-account.name: trainee-manibharathi
+type: kubernetes.io/service-account-token
