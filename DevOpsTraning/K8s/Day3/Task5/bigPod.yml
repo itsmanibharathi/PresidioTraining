@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: high-resource-pod
+  labels:
+    app: high-resource-app
+spec:
+  containers:
+  - name: high-resource-container
+    image: nginx:latest
+    resources:
+      requests:
+        memory: "2Gi"
+        cpu: "1"
+      limits:
+        memory: "4Gi"
+        cpu: "3"
+# Error from server (Forbidden): error when creating "bigPod.yml": pods "high-resource-pod" is forbidden: [maximum cpu usage per Pod is 1, but limit is 3, maximum memory usage per Pod is 2Gi, but limit is 4294967296]
+# ╰─❯ kubectl describe quota
+# Name:            trainee-manibharathi
+# Namespace:       trainee-manibharathi
+# Resource         Used  Hard
+# --------         ----  ----
+# limits.cpu       0     4
+# limits.memory    0     16Gi
+# pods             0     50
+# requests.cpu     0     2
+# requests.memory  0     4Gi
+# secrets          3     50
+# services         0     50
