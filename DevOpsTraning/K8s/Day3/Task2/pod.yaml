@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: try-secret-pod
+  labels:
+    purpose: try-secrets
+spec:
+  containers:
+  - name: try-secret-containers
+    image: debian
+    imagePullPolicy: IfNotPresent
+    command: ["sh", "-c"]
+    args: ["while true; do echo 'Hello, Kubernetes!'; sleep 10; done"]
+    envFrom:
+    - secretRef:
+        name: simple-secret
+    volumeMounts:
+    - name: secret-volume
+      mountPath: /etc/secrets  # Mount the secret at this path
+      readOnly: true
+
+  volumes:
+  - name: secret-volume
+    secret:
+      secretName: simple-secret  # Reference to the secret
+
+  imagePullSecrets:
+  - name: dockerhub-secret

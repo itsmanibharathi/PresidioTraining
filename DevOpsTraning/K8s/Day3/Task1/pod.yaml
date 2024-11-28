@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: command-demo
+  labels:
+    purpose: demonstrate-command
+spec:
+  containers:
+  - name: command-demo-container
+    image: debian
+    imagePullPolicy: IfNotPresent
+    # command: ["printenv"]
+    # args: ["HOSTNAME", "KUBERNETES_PORT"]
+    command: ["sh", "-c"]
+    args: ["while true; do echo 'Hello, Kubernetes!'; sleep 10; done"]
+  # #  use the docker-registory secret  
+  imagePullSecrets: 
+  - name: dockerhub-secret
+  
