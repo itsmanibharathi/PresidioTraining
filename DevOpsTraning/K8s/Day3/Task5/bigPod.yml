@@ -15,6 +15,7 @@ spec:
       limits:
         memory: "4Gi"
         cpu: "3"
+      
 # Error from server (Forbidden): error when creating "bigPod.yml": pods "high-resource-pod" is forbidden: [maximum cpu usage per Pod is 1, but limit is 3, maximum memory usage per Pod is 2Gi, but limit is 4294967296]
 # ╰─❯ kubectl describe quota
 # Name:            trainee-manibharathi
