@@ -1,0 +1,31 @@
+# pull the aws-cli image and run the command to list the s3 bucket use the mani-sa service account and create as deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iam-ac-deployment
+  labels:
+    app: iam-ac
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iam-ac
+  template:
+    metadata:
+      labels:
+        app: iam-ac
+    spec:
+      containers:
+        - name: iam-ac
+          image: amazon/aws-cli
+          command: 
+            - "sleep"
+            - "3600"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+      serviceAccountName: mani-sa
