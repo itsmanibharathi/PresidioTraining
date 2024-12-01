@@ -1,0 +1,26 @@
+# topology.kubernetes.io/zone us-east-1c
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: day4-task2-deployment
+  labels:
+    app: day4-task2
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: day4-task2
+  template:
+      metadata:
+        labels:
+          app: day4-task2
+      spec:
+        containers:
+          - name: nginx
+            image: nginx:latest
+            ports:
+              - containerPort: 80
+        nodeSelector:
+          topology.kubernetes.io/zone: us-east-1c
