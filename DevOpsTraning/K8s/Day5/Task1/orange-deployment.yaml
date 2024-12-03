@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orange-deployment
+  namespace: trainee-manibharathi
+  labels:
+    app: orange
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orange
+  template:
+    metadata:
+      labels:
+        app: orange
+    spec:
+      containers:
+        - name: orange
+          image: hashicorp/http-echo
+          args:
+            - "-text=orange"
