@@ -53,3 +53,7 @@ terraform.tfvars.json
 *.auto.tfvars.json
 
 .terraform.lock.hcl
+
+*.crt
+*.csr
+*.key
