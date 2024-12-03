@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: day6-task2
+  namespace: trainee-manibharathi
+  labels:
+    app: day6-task2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: day6-task2
+  template:
+    metadata:
+      labels:
+        app: day6-task2
+    spec:
+      serviceAccountName: mani-sa
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: html-code-volume
+              mountPath: /usr/share/nginx/html
+      initContainers:
+        - name: s3-clone
+          image: amazon/aws-cli
+          command:
+            - /bin/sh
+            - -c
+            - |
+              aws s3 cp s3://mani-s3-test/index.html /tmp/html-code/
+              cp -r /tmp/html-code/* /mnt/html
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          volumeMounts:
+            - name: html-code-volume
+              mountPath: /mnt/html
+          
+      volumes:
+        - name: html-code-volume
+          emptyDir: {}
