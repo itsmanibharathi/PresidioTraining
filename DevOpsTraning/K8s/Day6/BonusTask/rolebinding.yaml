@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kgetonly-crb
+  namespace: trainee-manibharathi
+subjects:
+- kind: ServiceAccount
+  name: kgetonly-sa
+  namespace: trainee-manibharathi
+roleRef:
+  kind: ClusterRole  # Corrected to "ClusterRole"
+  name: kgetonly-cr
+  apiGroup: rbac.authorization.k8s.io    
