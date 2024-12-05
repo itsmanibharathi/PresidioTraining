@@ -1,0 +1,10 @@
+resources:
+  - ../base
+
+images:
+  - name: nginx
+    newName: nginx
+    newTag: latest
+
+namePrefix: prod-
+nameSuffix: -v1
