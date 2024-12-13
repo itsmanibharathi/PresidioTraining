@@ -11,3 +11,7 @@
 [submodule "TerraformModules"]
 	path = DevOpsTraning/Terraform/Challange/module
 	url = git@gitlab.presidio.com:manibharathim/tf.git
+
+[submodule "K8s-demo"]
+	path = DevOpsTraning/CICD/Day3/Application
+	url = https://gitlab.com/itsmanibharathi/k8s-demo

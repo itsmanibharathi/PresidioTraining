@@ -57,3 +57,6 @@ terraform.tfvars.json
 *.crt
 *.csr
 *.key
+
+
+/DevOpsTraning/K8s/Day7/helm/

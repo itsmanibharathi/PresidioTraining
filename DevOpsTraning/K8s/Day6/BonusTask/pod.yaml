@@ -22,7 +22,6 @@ spec:
     volumeMounts:
     - name: nodeinfo
       mountPath: /mnt
-  initContainers:  # Corrected field name
   - name: init-getpod-nodeinfo
     image: bitnami/kubectl:1.31.3-debian-12-r1
     command:
