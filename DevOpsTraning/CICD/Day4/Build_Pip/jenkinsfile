@@ -1,14 +1,24 @@
-@Library('build_docker') _
+@Library('shared-lib') _
+ 
 pipeline {
     agent {
         kubernetes {
-            yaml """ 
+            cloud 'kubernetes'
+            yaml """
             apiVersion: v1
             kind: Pod
             spec:
               containers:
               - name: docker
-                image: docker:20.10
+                image: saltycrane/aws-cli-and-docker:latest
+                command:
+                - cat
+                tty: true
+                volumeMounts:
+                - name: docker-sock
+                  mountPath: /var/run/docker.sock
+              - name: aws-cli
+                image: saltycrane/aws-cli-and-docker:latest
                 command:
                 - cat
                 tty: true
@@ -22,20 +32,62 @@ pipeline {
             """
         }
     }
-
+ 
     environment {
-        GHCR_USERNAME = credentials('github-username') // Replace with Jenkins credential ID for GitHub username
-        GHCR_TOKEN = credentials('github-token')       // Replace with Jenkins credential ID for GitHub tokengit 
+        AWS_REGION = 'us-east-1'
+        ECR_REPO = '853973692277.dkr.ecr.us-east-1.amazonaws.com'
+        DOCKER_IMAGE = 'manibharathi/nginx'
+        DOCKER_TAG = 'latest'
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        AWS_SESSION_TOKEN = credentials('aws-session-token')
     }
+
     stages {
-        stage('Build and Push Docker Image') {
+        stage('Prepare Dockerfile') {
             steps {
-                container('docker') {
+                script {
+                    writeFile file: 'Dockerfile', text: """
+                    # Use the official Nginx image from the Docker Hub
+                    FROM nginx:latest
+ 
+                    # Expose port 80 to the outside world
+                    EXPOSE 80
+ 
+                    # Start Nginx when the container launches
+                    CMD ["nginx", "-g", "daemon off;"]
+                    """
+                }
+            }
+        }
+        
+        stage('Login to ECR') {
+            steps {
+                container('aws-cli') {
+ 
+ 
                     script {
-                        def dockerImage = docker.build("ghcr.io/${env.GHCR_USERNAME}/my-app:${env.BUILD_NUMBER}")
-                        docker.withRegistry('https://ghcr.io', 'github-token') {
-                            dockerImage.push()
-                        }
+                        loginToECR(
+                            awsRegion: env.AWS_REGION,
+                            ecrRepo: env.ECR_REPO,
+                        )
+ 
+                        buildDockerImage(
+                            dockerImage: env.DOCKER_IMAGE,
+                            dockerTag: env.DOCKER_TAG
+                        )
+ 
+                        tagDockerImage(
+                            dockerImage: env.DOCKER_IMAGE,
+                            dockerTag: env.DOCKER_TAG,
+                            ecrRepo: env.ECR_REPO
+                        )
+                  
+                        pushDockerImage(
+                            dockerImage: env.DOCKER_IMAGE,
+                            dockerTag: env.DOCKER_TAG,
+                            ecrRepo: env.ECR_REPO
+                        )
                     }
                 }
             }
