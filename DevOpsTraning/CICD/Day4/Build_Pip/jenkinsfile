@@ -1,14 +1,41 @@
 @Library('build_docker') _
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            yaml """ 
+            apiVersion: v1
+            kind: Pod
+            spec:
+              containers:
+              - name: docker
+                image: docker:20.10
+                command:
+                - cat
+                tty: true
+                volumeMounts:
+                - name: docker-sock
+                  mountPath: /var/run/docker.sock
+              volumes:
+              - name: docker-sock
+                hostPath:
+                  path: /var/run/docker.sock
+            """
+    }
+    environment {
+        GHCR_USERNAME = credentials('github-username') // Replace with Jenkins credential ID for GitHub username
+        GHCR_TOKEN = credentials('github-token')       // Replace with Jenkins credential ID for GitHub tokengit 
+    }
     stages {
         stage('Build and Push Docker Image') {
             steps {
-                buildAndPushGhcr(
-                    ghcrRepository: 'demo_frontend',
-                    dockerfilePath: './Frontend/Dockerfile',
-                    imageTag: 'v1.0.0'
-                )
+                container('docker') {
+                    script {
+                        def dockerImage = docker.build("ghcr.io/${env.GHCR_USERNAME}/my-app:${env.BUILD_NUMBER}")
+                        docker.withRegistry('https://ghcr.io', 'github-token') {
+                            dockerImage.push()
+                        }
+                    }
+                }
             }
         }
     }
