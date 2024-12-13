@@ -20,7 +20,9 @@ pipeline {
                 hostPath:
                   path: /var/run/docker.sock
             """
+        }
     }
+
     environment {
         GHCR_USERNAME = credentials('github-username') // Replace with Jenkins credential ID for GitHub username
         GHCR_TOKEN = credentials('github-token')       // Replace with Jenkins credential ID for GitHub tokengit 
