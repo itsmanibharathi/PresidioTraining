@@ -15,3 +15,7 @@
 [submodule "K8s-demo"]
 	path = DevOpsTraning/CICD/Day3/Application
 	url = https://gitlab.com/itsmanibharathi/k8s-demo
+
+[submodule "demo-tf"]
+	path = DevOpsTraning/CICD/Day2/tf
+	url = https://gitlab.presidio.com/manibharathim/demo-tf
