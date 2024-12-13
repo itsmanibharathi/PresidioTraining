@@ -1,0 +1,15 @@
+@Library('build_docker') _
+pipeline {
+    agent any
+    stages {
+        stage('Build and Push Docker Image') {
+            steps {
+                buildAndPushGhcr(
+                    ghcrRepository: 'demo_frontend',
+                    dockerfilePath: './Frontend/Dockerfile',
+                    imageTag: 'v1.0.0'
+                )
+            }
+        }
+    }
+}
