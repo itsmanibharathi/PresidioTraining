@@ -17,7 +17,6 @@ resource "aws_dynamodb_table" "mani_tf_backend_lock" {
         enabled = var.enable_encryption
         kms_key_arn = var.aws_kms_key_arn
     }
-
     point_in_time_recovery {
         enabled = var.enable_recovery
     }

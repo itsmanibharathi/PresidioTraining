@@ -1,0 +1,7 @@
+stages: [init, build, test, deploy]
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: always
+    - when: never
+    
